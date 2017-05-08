@@ -1,4 +1,4 @@
-package domain.entities;
+package domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
