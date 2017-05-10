@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RecruitmentTask.iml" filepath="$PROJECT_DIR$/RecruitmentTask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recruitment-task.iml" filepath="$PROJECT_DIR$/recruitment-task.iml" />
     </modules>
   </component>
 </project>

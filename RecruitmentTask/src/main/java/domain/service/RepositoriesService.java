@@ -1,19 +1,20 @@
 package domain.service;
 
-import domain.model.GithubRepositoryDetails;
 import domain.model.GithubCredentials;
+import domain.model.GithubRepositoryDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.List;
+/**
+ * Created by Lukasz S. on 09.05.2017.
+ */
 
 @Service
 public class RepositoriesService {
 
     private final String REST_API = "https://api.github.com/";
 
-    public List<GithubRepositoryDetails> getRepository(GithubCredentials githubCredentials) {
+    public GithubRepositoryDetails getRepository(GithubCredentials githubCredentials) {
 
         StringBuilder url = new StringBuilder()
                 .append(REST_API)
@@ -21,8 +22,6 @@ public class RepositoriesService {
                 .append(githubCredentials.getOwner() + "/")
                 .append(githubCredentials.getRepositoryName());
 
-        List<GithubRepositoryDetails> githubRepositoryDetails = Arrays.asList(new RestTemplate().getForObject(url.toString(), GithubRepositoryDetails.class));
-
-        return githubRepositoryDetails;
+        return new RestTemplate().getForObject(url.toString(), GithubRepositoryDetails.class);
     }
 }

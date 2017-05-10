@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="RecruitmentTask" />
+        <module name="030-testing-spring-rest-webservice-controllers" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RecruitmentTask" target="1.8" />
+      <module name="030-testing-spring-rest-webservice-controllers" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

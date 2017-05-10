@@ -6,23 +6,21 @@ import domain.service.RepositoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+/**
+ * Created by Lukasz S. on 09.05.2017.
+ */
 
 @RestController
 public class RepositoriesController {
 
-    @Autowired
-    private RepositoriesService repositoriesService;
+	@Autowired
+	private RepositoriesService repositoriesService;
 
-    private GithubCredentials githubCredentials;
+	@RequestMapping(value = "/repositories/{owner}/{repository-name}", method = RequestMethod.GET)
+	public GithubRepositoryDetails getRepositoryDetails(
+			@PathVariable String owner,
+			@PathVariable("repository-name") String repositoryName){
 
-    @RequestMapping(value = "/repositories/{owner}/{repository-name}", method = RequestMethod.GET)
-    public List<GithubRepositoryDetails> getAllConfigurations(
-            @PathVariable String owner,
-            @PathVariable(name = "repository-name") String repositoryName){
-
-        githubCredentials = new GithubCredentials(owner, repositoryName);
-
-        return repositoriesService.getRepository(githubCredentials);
-    }
+		return repositoriesService.getRepository(new GithubCredentials(owner, repositoryName));
+	}
 }
