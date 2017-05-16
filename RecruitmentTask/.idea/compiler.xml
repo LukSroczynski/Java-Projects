@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="030-testing-spring-rest-webservice-controllers" />
+        <module name="recruitment-task" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="030-testing-spring-rest-webservice-controllers" target="1.8" />
+      <module name="recruitment-task" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
