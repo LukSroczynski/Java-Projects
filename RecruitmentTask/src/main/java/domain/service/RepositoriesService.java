@@ -14,12 +14,13 @@ import org.springframework.web.client.RestTemplate;
 public class RepositoriesService {
 
     private final String REST_API = "https://api.github.com/";
+    private final String REPOS = "repos/";
 
     public GithubRepositoryDetails getRepository(GithubCredentials githubCredentials) {
 
         StringBuilder url = new StringBuilder()
                 .append(REST_API)
-                .append("repos/")
+                .append(REPOS)
                 .append(githubCredentials.getOwner() + "/")
                 .append(githubCredentials.getRepositoryName());
 
