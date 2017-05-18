@@ -3,8 +3,13 @@ package domain.service;
 import domain.model.GithubCredentials;
 import domain.model.GithubRepositoryDetails;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.concurrent.Future;
 
 /**
  * Created by Lukasz S. on 09.05.2017.
@@ -14,16 +19,26 @@ import org.springframework.web.client.RestTemplate;
 public class RepositoriesService {
 
     private final String REST_API = "https://api.github.com/";
+
     private final String REPOS = "repos/";
 
-    public GithubRepositoryDetails getRepository(GithubCredentials githubCredentials) {
+    private final RestTemplate restTemplate;
 
-        StringBuilder url = new StringBuilder()
-                .append(REST_API)
-                .append(REPOS)
-                .append(githubCredentials.getOwner() + "/")
-                .append(githubCredentials.getRepositoryName());
+    public RepositoriesService(RestTemplateBuilder restTemplateBuilder) {
+        this.restTemplate = restTemplateBuilder.build();
+    }
 
-        return new RestTemplate().getForObject(url.toString(), GithubRepositoryDetails.class);
+    @Async
+    public Future<GithubRepositoryDetails> getRepository(GithubCredentials githubCredentials) {
+
+        String url =
+                String.format(
+                        REST_API + REPOS + "%s/%s",
+                        githubCredentials.getOwner(),
+                        githubCredentials.getRepositoryName());
+
+        GithubRepositoryDetails results = restTemplate.getForObject(url, GithubRepositoryDetails.class);
+
+        return new AsyncResult<>(results);
     }
 }

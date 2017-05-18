@@ -19,7 +19,6 @@ import static org.hamcrest.Matchers.lessThan;
 /**
  * Created by Lukasz S. on 09.05.2017.
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
@@ -30,7 +29,9 @@ public class RepositoriesControllerTest {
     private int port;
 
     private final String TEST_VALID_URL = "/repositories/lukSroczynski/Blog";
+
     private final String TEST_INVALID_URL = "2q4r6tbv8h0rt9h75g5d3f1qw";
+
     private final Long MAX_RESPONSE_TIME = 7000L;
 
     @Before

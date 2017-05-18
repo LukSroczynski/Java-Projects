@@ -11,6 +11,8 @@ import domain.model.GithubCredentials;
 import domain.model.GithubRepositoryDetails;
 import domain.service.RepositoriesService;
 
+import java.util.concurrent.Future;
+
 /**
  * Created by Lukasz S. on 09.05.2017.
  */
@@ -22,7 +24,7 @@ public class RepositoriesController {
 	private RepositoriesService repositoriesService;
 
 	@RequestMapping(value = "/repositories/{owner}/{repository-name}", method = RequestMethod.GET)
-	public GithubRepositoryDetails getRepositoryDetails(
+	public Future<GithubRepositoryDetails> getRepositoryDetails(
 			@PathVariable String owner,
 			@PathVariable("repository-name") String repositoryName) throws InterruptedException {
         return repositoriesService.getRepository(new GithubCredentials(owner, repositoryName));
