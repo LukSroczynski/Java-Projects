@@ -58,8 +58,8 @@ public class RepositoriesControllerTest {
                         body("created_at", Matchers.is("2016-11-06"));
     }
 
-    @Test
-    public void validate_response_time() {
+    @Test public void
+    validate_response_time() {
 
         given().
                 when().
@@ -69,8 +69,8 @@ public class RepositoriesControllerTest {
                     time(lessThan(MAX_RESPONSE_TIME));
     }
 
-    @Test
-    public void validate_invalid_url() {
+    @Test public void
+    validate_invalid_url() {
 
         given().
                 when().
@@ -78,7 +78,4 @@ public class RepositoriesControllerTest {
                 then().
                     statusCode(404);
     }
-
-
-
 }

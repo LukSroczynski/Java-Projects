@@ -23,10 +23,11 @@ public class RepositoriesController {
 	@Autowired
 	private RepositoriesService repositoriesService;
 
-	@RequestMapping(value = "/repositories/{owner}/{repository-name}", method = RequestMethod.GET)
-	public Future<GithubRepositoryDetails> getRepositoryDetails(
+	@RequestMapping(value = "/repositories/{owner}/{repository-name}", method = RequestMethod.GET) public Future<GithubRepositoryDetails>
+	getRepositoryDetails(
 			@PathVariable String owner,
-			@PathVariable("repository-name") String repositoryName) throws InterruptedException {
+			@PathVariable("repository-name") String repositoryName)
+			throws InterruptedException {
         return repositoriesService.getRepository(new GithubCredentials(owner, repositoryName));
 	}
 }
