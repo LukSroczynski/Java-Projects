@@ -1,8 +1,10 @@
 package domain;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
+
 import static org.hamcrest.Matchers.lessThan;
 
+import io.restassured.RestAssured;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class RepositoriesControllerTest {
     private WebApplicationContext context;
 
     private final String TEST_VALID_URL = "/repositories/lukSroczynski/Blog";
-    private final String TEST_INVALID_URL = "2q4r6tbv8h0rt9h75g5d3f1qw";
+    private final String TEST_INVALID_URL = "/2q4r6tbv8h0rt9h75g5d3f1qw";
 
     private final Long MAX_RESPONSE_TIME = 7000L;
 
@@ -41,17 +43,12 @@ public class RepositoriesControllerTest {
         RestAssuredMockMvc.reset();
     }
 
-    @Test
-    public void validate_google() {
-        given().when().get("http://www.google.com").then().statusCode(200);
-    }
-
     @Test public void
     validation_repository_details() {
 
         given().
                 when().
-                    async().get("/repositories/lukSroczynski/Blog").
+                    async().get(TEST_VALID_URL).
                 then().
                     statusCode(200).
                         body("full_name", Matchers.is("LukSroczynski/Blog")).
@@ -81,5 +78,7 @@ public class RepositoriesControllerTest {
                 then().
                     statusCode(404);
     }
+
+
 
 }
