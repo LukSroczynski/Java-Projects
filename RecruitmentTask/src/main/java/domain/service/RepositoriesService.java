@@ -19,7 +19,6 @@ import java.util.concurrent.Future;
 public class RepositoriesService {
 
     private final String REST_API = "https://api.github.com/";
-
     private final String REPOS = "repos/";
 
     private final RestTemplate restTemplate;
